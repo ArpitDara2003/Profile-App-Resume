@@ -1,0 +1,155 @@
+body { 
+    font-family: monospace;
+    background-image:url("images/Javascript\Work\Black Jack game\game.jpg");
+    background-size: cover;
+    background-color: rgb(36, 36, 53);
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    overflow-x: hidden;
+}
+
+.Sec1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 20px;
+}
+
+.Sec2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    transition: transform 1s ease-in-out;
+    margin-bottom: 10px; 
+    box-sizing: border-box; 
+    overflow: hidden; 
+}
+
+
+/* Fading in animation */
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+/* Fading out animation */
+@keyframes fadeOut {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+/* Apply fading in animation to .Sec2.animate-1 */
+.Sec2.animate-1 {
+    animation: fadeIn 1s ease-in-out forwards;
+}
+
+/* Apply fading out animation to .Sec2.animate-2 */
+.Sec2.animate-2 {
+    animation: fadeOut 1s ease-in-out forwards;
+}
+
+.Sec3{
+    height: 100px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;  
+    display: flex;
+    transition: transform 1s ease-in-out;
+    height: 10%;
+    margin-bottom: 10px; /* Add margin between sections */
+    box-sizing: border-box; /* Include padding and border in the height */
+    overflow: hidden; /* Hide overflow content */
+}
+
+.Sec3 h1{
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 40px;
+    color: rgb(110, 110, 110);
+}
+
+.Sec3 p{
+    font-size: 25px;
+    color: rgb(100, 211, 255);
+}
+
+.Sec4{
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    display: flex;    
+    transition: transform 1s ease-in-out;
+}
+
+.Sec4 h1{
+    font-size: 50px;
+    color: rgb(39, 44, 46);
+}
+
+.Sec4 p{
+    font-size: 25px;
+    color: rgb(100, 211, 255);
+}
+
+.Sec3.animate-1{
+    transform: translateX(0);
+}
+.Sec3.animate-2{
+    transform: translateX(-100%);
+}
+
+.Sec4.animate-1{
+    transform: translateX(0);
+}
+.Sec4.animate-2{
+    transform: translateX(100%);
+}
+
+.message {
+    color: red;
+    font-size: smaller;
+}
+.message:hover{
+    transform: rotateX(10);
+    transform: rotateX(10);
+
+}
+
+
+button{
+    background-color: #4b19ff;
+    color: aliceblue;
+    border-radius: 50px;
+    height: fit-content;
+    width: fit-content;
+    margin-bottom: 5px;
+}
+
+.delete_button:hover{
+    background-color: #392e60;
+    color: rgb(216, 0, 0);
+}
+
+button.delete-button {
+    background-color: #14005a;
+    color: aliceblue;
+    border: none; /* Optional: removes border for a cleaner look */
+    padding: 8px 12px; /* Adjust padding as needed */
+    cursor: pointer; /* Changes cursor to pointer on hover */
+}
+
+button.delete-button:hover {
+    background-color: red;
+}
+
+.tile {
+background-color: #f0f0f0;
+border: 1px solid #ccc;
+padding: 10px;
+text-align: center;
+}
+
+
+

@@ -1,0 +1,46 @@
+body {
+    width: 100%;
+}
+
+.fill {
+    border-radius: 10px;
+    padding: auto;
+    margin: auto;
+    padding-top: 12%;
+    padding-bottom: 15%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
+    margin-bottom: 20px;
+    height: 90%;
+    width: 80%;
+}
+.fill p {
+    margin-top: 20px;
+}
+
+.fill textarea {
+    width: 90%;
+    height: 300px; /* Adjust the height as needed */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: vertical; /* Allows vertical resizing */
+}
+
+.fill textarea:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+.fill input {
+    width: 90%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.fill input[type="text"]:focus,
+.fill input[type="email"]:focus,
+.fill input[type="file"]:focus {
+    outline: none;
+    border-color: #007bff;
+}

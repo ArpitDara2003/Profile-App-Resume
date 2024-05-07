@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>{{user.first_name}} {{user.last_name}}'s Profile </title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'basic.css' %}">
+    <link rel="stylesheet" href="{% static 'taskbar.css' %}">
+    <link rel="stylesheet" href="{% static 'skillbox.css' %}">
+    <link rel="stylesheet" href="{% static 'home.css' %}">
+    <link rel="stylesheet" href="{% static 'certificatebox.css' %}">
+    <script>
+        function submitForm_skill(element) {
+            element.closest('form').submit();
+        }
+        function submitForm_certificate(element) {
+            element.closest('form').submit();
+        }
+        document.addEventListener('DOMContentLoaded', function () {
+            let sections = document.querySelectorAll('section');
+
+            window.onscroll = () => {
+                sections.forEach(sec => {
+                    let top = window.scrollY;
+                    let offset = sec.offsetTop;
+                    let height = sec.offsetHeight;
+                    let bottom = offset + height; // Calculate the bottom position of the section
+
+                    // Calculate the bottom position of the viewport
+                    let viewportBottom = top + window.innerHeight;
+
+                    // Check if the bottom of the section touches or goes beyond the bottom of the viewport
+                    if (bottom <= viewportBottom) {
+                        sec.classList.add('animate-1');
+                        sec.classList.remove('animate-2');
+                    } else {
+                        sec.classList.add('animate-2');
+                        sec.classList.remove('animate-1');
+                    }
+                });
+            };
+        });
+    </script>
+
+</head>
+
+<body>
+
+    <div class="taskbar">
+        <ul>
+            <li>
+                <p>Your's:</p>
+            </li>
+            <li style="float:left">
+
+                <form action="/{{user.username}}">
+                    <input type='Submit' value="Home" class='bar_buttons' />
+                </form>
+            </li>
+            <li style="float:left">
+                <form action="/{{user.username}}/allskills">
+                    <input type='Submit' value="All Skills" class='bar_buttons' />
+                </form>
+            </li>
+            <li style="float:left">
+                <form action="/{{user.username}}/certificates">
+                    <input type='Submit' value="Certificates" class='bar_buttons' />
+                </form>
+            </li>
+
+            <li class="flex-grow">
+                <form>
+                    <input type="search" placeholder="Search..." class="search_bar" />
+                </form>
+            </li>
+
+            <li style="float: right;">
+                <form action="/{{user.username}}/profile">
+                    <button type='submit' class='bar_buttons' style="height: auto;">
+                        {% load static %}
+                        <div class="image_t" style="display: flex; align-items: center;">
+                            <img src="{{creater.image.url}}" alt="{{ user.username }}"><p> </p>
+                            <p style="margin-top: 0%; margin-bottom: 0%;">{{ user.username }}</p>
+                        </div>
+                    </button>
+                </form>
+            </li>
+            <li style="float: right;">
+                <form action="/{{user.username}}/logout">
+                    <input class='bar_buttons red' type='Submit' value="Logout" />
+                </form>
+            </li>
+        </ul>
+    </div>
+
+
+
+    <section class="Container Sec1 animate-2">
+        <div class="row">
+            <div class="col-6">
+                <div class="name-container">
+                    <h1>{{ creater.full_name }}</h1>
+                    <p>{{ creater.discription }}</p>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="image-container">
+                    <img src="{{ creater.image.url }}" alt="Example Image">
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="details  professional-profile multiline-div-p">
+                    <h2>Professional Profile:</h2>
+                    <p class="ellipsis-p">{{ creater.detailed_discription }}</p>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="info">
+                    <p>Date of Birth: {{ creater.date_of_birth }}</p>
+                    <p>Address: {{ creater.address }}</p>
+                    <p>Contact No: {{ creater.contact_no }}</p>
+                    <div class="social-links">
+                        <form id="skillForm" method="POST" action="editprofile">
+                            {% csrf_token %}
+                            <input type="hidden" name="user_id" value="{{user.user_id}}">
+                            <button type="submit" class="button">Edit Persnal Info</button>
+                        </form>
+                        <p></p>
+                        <form method="GET" action="changepassword">
+                            {% csrf_token %}
+                            <button type="submit" class="button">Change Password</button>
+                        </form>
+                        <p></p>
+                        <form method="GET" action="changeusername">
+                            {% csrf_token %}
+                            <button type="submit" class="button">Change Username</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class='Container Sec3 animate-1'>
+        <div class="row">
+            <div class="col-12">
+                <h1>Skills Learned: </h1>
+            </div>
+        </div>
+    </section>
+
+    {% if groups or last_skills%}
+    <div class="row">        
+        {% for group in groups %}
+        <section class='Container Sec2 animate-1 grid-container'>
+            <div class="row">
+                {% for skill in group %}
+                <div class="col-4">
+                    <form id="skillForm" method="POST" action="skill">
+                        {% csrf_token %}
+                        <input type="hidden" name="skill_name" value="{{ skill.skill_name }}">
+                        <div class="skill-box multiline-div" onclick="submitForm_skill(this)">
+                            <h3 class="ellipsis">{{ skill.skill_name }}</h3>
+                            <p class="ellipsis">{{ skill.skill_discription }}</p>
+                            <form id="skillForm" method="POST" action="delete_skill">
+                                {% csrf_token %}
+                                <input type="hidden" name="skill_name" value="{{skill.skill_name}}">
+                                <div onclick="confirmDelete(this)">
+                                    <button class="button">Delete</button>
+                                </div>
+                            </form>
+                            <form id="skillForm" method="POST" action="editskill">
+                                {% csrf_token %}
+                                <input type="hidden" name="skill_name" value="{{skill.skill_name}}">
+                                <div onclick="confirmEdit(this)">
+                                    <button class="button">Edit</button>
+                                </div>
+                            </form>
+                        </div>
+                    </form>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+        {% endfor %}
+    </div>
+
+
+    <div class="row">
+        <section class='Container Sec2 animate-1 grid-container'>
+            <div class="row">
+                {% for skill in last_skills %}
+                <div class="col-4">
+                    <form id="skillForm" method="POST" action="skill">
+                        {% csrf_token %}
+                        <input type="hidden" name="skill_name" value="{{ skill.skill_name }}">
+                        <div class="skill-box multiline-div" onclick="submitForm_skill(this)">
+                            <h3 class="ellipsis">{{ skill.skill_name }}</h3>
+                            <p class="ellipsis">{{ skill.skill_discription }}</p>
+                            <form id="skillForm" method="POST" action="delete_skill">
+                                {% csrf_token %}
+                                <input type="hidden" name="skill_name" value="{{skill.skill_name}}">
+                                <div onclick="confirmDelete(this)">
+                                    <button class="button">Delete</button>
+                                </div>
+                            </form>
+                            <form id="skillForm" method="POST" action="editskill">
+                                {% csrf_token %}
+                                <input type="hidden" name="skill_name" value="{{skill.skill_name}}">
+                                <div onclick="confirmEdit(this)">
+                                    <button class="button">Edit</button>
+                                </div>
+                            </form>
+                        </div>
+                    </form>
+                </div>
+                {% endfor %}
+                <div class="col-4">
+                    <div class="skill-box multiline-div" onclick="addskill()">
+                        <h3 class="ellipsis">Add A new Skill</h3>
+                        <form action="addskill">
+                            <button type="submit" class="button">+</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    {% else %}
+    <section class='Container Sec3 animate-1'>
+        <div class="row">
+            <div class="col-12">
+                <h1>No Skills Added!!!</h1>
+            </div>
+            <div class="skill-box multiline-div" onclick="addskill()">
+                <h3 class="ellipsis">Add A new Skill</h3>
+                <form action="addskill">
+                    <button type="submit" class="button">+</button>
+                </form>
+            </div>
+            
+        </div>
+    </section>
+    {% endif %}
+
+    {% if sets or last_skills %}
+    <section class='Container Sec3 animate-1'>
+        <div class="row">
+            <div class="col-12">
+                <h1>Certificates Earned: </h1>
+            </div>
+        </div>
+    </section>
+    {% for certificates in sets %}
+    <section class='Sec2 animate-1 grid-container'>
+        <div class="row">
+            {% for certificate in certificates %}
+            <div class="col-4">
+                <form id="skillForm" method="POST" action="certificate">
+                    {% csrf_token %}
+                    <input type="hidden" name="certificate_name" value="{{certificate.certificate_name}}">
+                    <div class="certificate-box multiline-div" onclick="submitForm_skill(this)">
+                        <h3 class="ellipsis">{{certificate.certificate_name}}</h3>
+                        <img src="{{certificate.certificate_image.url}}" alt="Certificate image Unavailable...">
+                        <p class="ellipsis">{{certificate.short_discription}}</p>
+                        <form id="skillForm" method="POST" action="deletecertificate">
+                            {% csrf_token %}
+                            <input type="hidden" name="certificate_name" value="{{certificate.certificate_name}}">
+                            <div onclick="confirmDelete(this)">
+                                <button class="button">Delete</button>
+                            </div>
+                        </form>
+                        <form id="skillForm" method="POST" action="editcertificate">
+                            {% csrf_token %}
+                            <input type="hidden" name="certificate_name" value="{{certificate.certificate_name}}">
+                            <div onclick="confirmEdit(this)">
+                                <button class="button">Edit</button>
+                            </div>
+                        </form>
+                    </div>
+                </form>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+    {% endfor %}
+
+    <section class='Container Sec2 animate-1 grid-container'>
+        <div class="row">
+            {% for certificate in last_certificates %}
+            <div class="col-4">
+                <form id="skillForm" method="POST" action="certificate">
+                    {% csrf_token %}
+                    <input type="hidden" name="certificate_name" value="{{certificate.certificate_name}}">
+                    <div class="certificate-box multiline-div" onclick="submitForm_skill(this)">
+                        <h3 class="ellipsis">{{certificate.certificate_name}}</h3>
+                        <img src="{{certificate.certificate_image.url}}" alt="Certificate image Unavailable...">
+                        <p class="ellipsis">{{certificate.short_discription}}</p>
+                        <form id="skillForm" method="POST" action="deletecertificate">
+                            {% csrf_token %}
+                            <input type="hidden" name="certificate_name" value="{{certificate.certificate_name}}">
+                            <div onclick="confirmDelete(this)">
+                                <button class="button">Delete</button>
+                            </div>
+                        </form>
+                        <form id="skillForm" method="POST" action="editcertificate">
+                            {% csrf_token %}
+                            <input type="hidden" name="certificate_name" value="{{certificate.certificate_name}}">
+                            <div onclick="confirmEdit(this)">
+                                <button class="button">Edit</button>
+                            </div>
+                        </form>
+                    </div>
+                </form>
+            </div>
+            {% endfor %}
+            <div class="col-4">
+                <div class="certificate-box multiline-div">
+                    <h3 class="ellipsis">Add A new Certificate</h3>
+                    <form action="addcertificate">
+                        <button type="submit" class="button">+</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    {% else %}
+    <section class='Container Sec3 animate-1'>
+        <div class="row">
+            <div class="col-12">
+                <h1>No Certificates Added!!!</h1>
+            </div>
+            <div class="certificate-box multiline-div">
+                <h3 class="ellipsis">Add A new Certificate</h3>
+                <form action="addcertificate">
+                    <button type="submit" class="button">+</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    {% endif %}
+
+</body>
+
+</html>
