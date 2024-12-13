@@ -23,7 +23,7 @@ The project directory structure includes:
   - `myapp/`: Django application folder.
     - `migrations/`: Folder containing migration files.
     - `models.py`, `views.py`, `urls.py`: Files for app functionality.
-  - `MyProject/`: Project settings folder.
+  - `src/`: Project settings folder.
     - `settings.py`, `urls.py`, etc.: Project settings files.
   - `static/`: Folder for static files like CSS and images.
     - `profile_pics/`: Folder for user-uploaded profile pictures.
