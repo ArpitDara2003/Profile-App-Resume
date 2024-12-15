@@ -1,0 +1,47 @@
+.certificate-box {
+    border-radius: 10px;
+    padding: auto;
+    margin: auto;
+    padding-top: 12%;
+    padding-bottom: 15%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
+    margin-bottom: 20px;
+    height: 90%;
+    width: 80%;
+}
+
+
+.certificate-box p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: beige;
+    font-size:25px;
+    font-family:'Times New Roman', Times, serif
+}
+
+.certificate-box h3 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #3271b4; /* Blue color for certificate name */
+    margin-bottom: 10px;
+    font-size: 40px;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+}
+
+.certificate-box h4 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #b2acac; /* Dark text color for detailed description */
+    margin-bottom: 15px;
+    font-size: 15px;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+}
+
+.certificate-box img {
+    max-width: 80%; /* Ensure image stays within container */
+    height: auto;
+    margin-bottom: 10px;
+}

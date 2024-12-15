@@ -1,0 +1,68 @@
+.row {
+    display: flex;
+    flex-wrap: wrap; /* Allow flex items to wrap to the next line */
+    gap: 20px; /* Add spacing between grid items */
+}
+
+.col-6 {
+    flex: 0 0 calc(50% - 20px); /* Each column takes 50% width minus the gap */
+    max-width: calc(50% - 20px); /* Each column takes 50% width minus the gap */
+}
+
+.professional-profile h2 {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 30px;
+    width: 100%; 
+}
+
+
+.name-container h1 {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    padding-top: 20%;
+    font-size: 40px;
+    margin-bottom: 10px; /* Add margin below the heading */
+}
+.name-container p {
+    padding-left: 3%;
+}
+
+.image-container img {
+    object-fit: cover;
+    /* padding-top: 15%; */
+    margin-top: 15%;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 3px solid antiquewhite; /* Specify border style */
+    
+}
+
+.details p{
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    padding-left: 3%;
+}
+.info p {
+    margin-bottom: 10px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.social-links a {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.multiline-div-p p {
+    margin: 0; /* Remove default margin for paragraphs */
+    word-wrap: break-word; /* Allow long words to break and wrap */
+    white-space: normal; /* Allow text to wrap to multiple lines */
+    text-overflow: ellipsis; /* Add ellipsis to truncated text */
+    display: -webkit-box; /* Set display type for WebKit browsers */
+    -webkit-line-clamp: 6; /* Limit to 3 lines before ellipsis */
+    -webkit-box-orient: vertical; /* Set vertical orientation */
+}
+
+.ellipsis-p {
+    overflow: hidden; /* Clip content that overflows */
+    text-overflow: ellipsis; /* Add ellipsis to truncated text */
+    white-space: nowrap; /* Prevent text from wrapping */
+}
