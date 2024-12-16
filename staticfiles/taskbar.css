@@ -92,12 +92,12 @@
     }
 
     .bar_buttons {
-        width: 100%; /* Full width buttons */
+        width: 20%; /* Full width buttons */
         text-align: center;
     }
 
     .taskbar input[type="search"] {
-        width: 100%; /* Full width search bar */
+        width: 20%; /* Full width search bar */
     }
 
     .image_t img {
