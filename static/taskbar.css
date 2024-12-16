@@ -87,19 +87,6 @@
         gap: 10px; /* Add spacing between items */
     }
 
-    .taskbar li {
-        width: 100%; /* Take full width */
-    }
-
-    .bar_buttons {
-        width: 100%; /* Full width buttons */
-        text-align: center;
-    }
-
-    .taskbar input[type="search"] {
-        width: 100%; /* Full width search bar */
-    }
-
     .image_t img {
         height: 24px;
         width: 24px;
