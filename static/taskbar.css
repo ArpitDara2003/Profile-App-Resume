@@ -77,13 +77,10 @@
 /* Media Query for Phones (small screens) */
 @media screen and (max-width: 768px) {
     .taskbar {
-        flex-direction: column; /* Stack items vertically */
-        align-items: stretch; /* Make elements take full width */
         padding: 10px;
     }
 
     .taskbar ul {
-        flex-direction: column; /* Stack list items vertically */
         gap: 10px; /* Add spacing between items */
     }
 
