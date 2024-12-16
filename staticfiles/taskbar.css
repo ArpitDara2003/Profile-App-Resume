@@ -1,69 +1,107 @@
+/* General taskbar styles */
 .taskbar {
     background-color: rgb(30, 30, 70); /* Dark blue background for taskbar */
     color: rgb(255, 255, 255); /* White text color */
     padding: 1%;
-    margin-top: 3%;
-    margin-left: 1%;
-    margin-right: 1%;
+    margin: 0 auto;
     position: fixed;
     width: 95%;
-    height: 11%;
+    height: auto; /* Allow height to adjust dynamically */
     z-index: 1000;
-    border-radius: 10px; 
+    border-radius: 10px;
+    display: flex;
+    flex-wrap: wrap; /* Wrap content for smaller screens */
+    align-items: center; /* Center vertically */
 }
 
+/* Taskbar unordered list styles */
 .taskbar ul {
     list-style: none;
     padding: 0;
     margin: 0;
     display: flex;
+    flex-wrap: wrap; /* Wrap the items to the next line on smaller screens */
+    width: 100%;
+    justify-content: space-between; /* Space out items evenly */
+    align-items: center; /* Align items in the center */
 }
 
+/* List item styles */
 .taskbar li {
-    margin-right: 20px;
+    margin: 5px;
     text-align: center;
 }
 
+/* Input search bar styles */
 .taskbar input[type="search"] {
     background-color: rgb(20, 20, 60); /* Darker blue background for search bar */
     color: rgb(255, 255, 255); /* White text color */
     border: none;
     border-radius: 20px; /* Rounded edges */
     padding: 8px;
-    width: 100%; /* Variable-size search bar */
+    width: 200px; /* Fixed width for larger screens */
+    max-width: 100%; /* Prevent overflowing */
     box-sizing: border-box; /* Include padding in width calculation */
     font-size: 14px;
 }
 
-.taskbar input[type="search"]::placeholder {
-    color: rgb(150, 150, 150); /* Light gray placeholder text */
-}
-
-.taskbar input[type="search"]:focus {
-    outline: none; /* Remove outline on focus */
-    border: 2px solid rgb(30, 30, 70); /* Dark blue border on focus */
-}
-.image_t img {
-    object-fit: cover;
-    height: 20px;
-    width: 20px;
-    border-radius: 50%;
-    border: 1px;
-    border-color: aliceblue;
-}
-.image_t p {
-    padding-bottom: 2%;
-}
-
+/* Buttons styling */
 .bar_buttons {
     background-color: rgb(38, 53, 88); /* Darker blue background for buttons */
-    color: rgb(168, 168, 168); /* White text color */
+    color: rgb(168, 168, 168); /* Gray text color */
     border: none;
     border-radius: 5%;
     padding: 8px 16px;
     cursor: pointer;
 }
 
+/* Profile image and username */
+.image_t {
+    display: flex;
+    align-items: center;
+    gap: 5px; /* Add spacing between the image and text */
+}
+
+.image_t img {
+    object-fit: cover;
+    height: 30px; /* Increase for better visibility on phones */
+    width: 30px;
+    border-radius: 50%;
+}
+
+/* Logout button */
 .bar_buttons.red {
     background-color: rgb(200, 0, 0); /* Red background for logout button */
+}
+
+/* Media Query for Phones (small screens) */
+@media screen and (max-width: 768px) {
+    .taskbar {
+        flex-direction: column; /* Stack items vertically */
+        align-items: stretch; /* Make elements take full width */
+        padding: 10px;
+    }
+
+    .taskbar ul {
+        flex-direction: column; /* Stack list items vertically */
+        gap: 10px; /* Add spacing between items */
+    }
+
+    .taskbar li {
+        width: 100%; /* Take full width */
+    }
+
+    .bar_buttons {
+        width: 100%; /* Full width buttons */
+        text-align: center;
+    }
+
+    .taskbar input[type="search"] {
+        width: 100%; /* Full width search bar */
+    }
+
+    .image_t img {
+        height: 24px;
+        width: 24px;
+    }
 }
